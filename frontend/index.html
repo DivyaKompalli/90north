@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Online Cafe</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #8b0000;
+        color: white;
+        padding: 1rem;
+        text-align: center;
+        z-index: 1000;
+        font-size: 1.5rem;
+      }
+      .container {
+        display: flex;
+        flex: 1;
+        margin-top: 60px;
+      }
+
+      .menu {
+        width: 250px;
+        background-color: #f4f4f4;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        transition: transform 0.3s ease;
+        transform: translateX(0);
+      }
+
+      .menu.collapsed {
+        transform: translateX(-100%);
+      }
+
+      .menu-toggle {
+        display: none;
+        background-color: #8b0000;
+        color: white;
+        border: none;
+        padding: 0.5rem;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      .menu-toggle.active {
+        display: block;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 2rem;
+        background-color: #fff;
+      }
+
+      .right-panel {
+        width: 250px;
+        background-color: #f9f9f9;
+        padding: 1rem;
+      }
+
+      .footer {
+        background-color: #8b0000;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .menu {
+          position: absolute;
+          height: 100%;
+          z-index: 100;
+          top: 60px;
+          transform: translateX(-100%);
+        }
+
+        .menu.open {
+          transform: translateX(0);
+        }
+
+        .menu-toggle {
+          display: block;
+          position: fixed;
+          top: 10px;
+          left: 10px;
+        }
+
+        .right-panel {
+          display: none;
+          width: 100px;
+        }
+      }
+      .row3 {
+        /* display: flex; */
+        justify-content: center;
+        margin: 5px;
+        background-color: #ddc67b;
+        /* padding: 50px; */
+      }
+      .row3 .box {
+        margin: 50px;
+        /* border: solid 5px #b2abbf; */
+        border-radius: 10px;
+        padding: 5px;
+        /* width: ; */
+      }
+      .row2 {
+        /* display: flex; */
+        justify-content: center;
+      }
+      .row2 .box {
+        margin: 5px;
+        border: solid 5px #b7918c;
+        border-radius: 10px;
+        padding: 5px;
+        background-color: #b7918c;
+        width: 300px;
+      }
+      .collapse {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+      }
+      .active {
+        max-height: 300px;
+      }
+    </style>
+    <script>
+      function toggleCollapse() {
+        const content = document.getElementById("collapsibleContent");
+        content.classList.toggle("active");
+      }
+      function adjustPageLayout() {
+        const screenWidth = window.innerWidth;
+        const body = document.body;
+        body.style.width = "100%";
+        body.style.margin = "0 auto";
+        if (screenWidth >= 992 && screenWidth <= 1600) {
+          body.style.width = "90%";
+        } else if (screenWidth >= 700 && screenWidth <= 767) {
+          body.style.width = "80%";
+        } else if (screenWidth >= 600 && screenWidth < 700) {
+          body.style.width = "75%";
+        } else if (screenWidth <= 600) {
+          body.style.width = "50%";
+        }
+      }
+      window.addEventListener("load", adjustPageLayout);
+      window.addEventListener("resize", adjustPageLayout);
+    </script>
+  </head>
+  <body>
+    <div class="navbar">Welcome to Online Cafe</div>
+    <center>
+      <button class="menu-toggle">☰</button>
+      <div class="container">
+        <nav class="menu">
+          <button onclick="toggleCollapse()">Toggle Collapse</button>
+          <div id="collapsibleContent" class="collapse">
+            <ul type="none">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Menu</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Order Online</a></li>
+            </ul>
+          </div>
+        </nav>
+        <div class="main-content">
+          <h1>Welcome to Our Cafe</h1>
+          <p>
+            Enjoy the best coffee, snacks, and meals. Explore our menu and order
+            online for a delightful experience!
+          </p>
+          <div class="row3">
+            <div class="box">
+              <img
+                src="assets/images/5.jpeg"
+                alt=""
+                width="400px"
+                height="400px"
+                style="border-radius: 5px"
+              />
+            </div>
+            <div class="box">
+              <h2>Description:</h2>
+              <p>
+                a beverage brewed from the roasted and ground seeds of the
+                tropical evergreen coffee plant. Coffee is one of the three most
+                popular beverages in the world (alongside water and tea), and it
+                is one of the most profitable international commodities.
+              </p>
+            </div>
+          </div>
+          <div class="row2">
+            <div class="box">
+              <img src="assets/images/1.jpg" height="300px" width="300px" />
+              <h3>Product 1</h3>
+              <hr />
+              <h4>Description: Cold coffee</h4>
+              Price:30$&nbsp;&nbsp;<button>Add to Cart</button>
+            </div>
+            <div class="box">
+              <img src="assets/images/2.jpg" height="300px" width="300px" />
+              <h3>Product 2</h3>
+              <hr />
+              <h4>Description: Latte</h4>
+              Price:25$&nbsp;&nbsp;<button>Add to Cart</button>
+            </div>
+            <div class="box">
+              <img src="assets/images/3.jpg" height="300px" width="300px" />
+              <h3>Product 3</h3>
+              <hr />
+              <h4>Description: Choco Glazed Doughnut</h4>
+              Price:30$&nbsp;&nbsp;<button>Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        <aside class="right-panel">
+          <h3>Special Offers</h3>
+          <p>Check out our seasonal discounts and new menu items.</p>
+          <a href="#">
+            Buy one get one (BOGO): This deal can encourage customers to try new
+            dishes, such as appetizers, desserts, beverages, or entrees.
+          </a>
+        </aside>
+      </div>
+      <footer class="footer">© 2025 Online Cafe. All Rights Reserved.</footer>
+    </center>
+  </body>
+</html>
