@@ -1,0 +1,25 @@
+# Core Django packages
+django==4.2.5  # Replace with your Django version
+
+# Database backend for PostgreSQL
+psycopg2-binary==2.9.7
+
+# WebSocket support
+daphne==4.0.0  # ASGI server for Django Channels
+channels==4.0.0  # WebSocket support for Django
+
+# Gunicorn (Optional, for managing WSGI server in production)
+gunicorn==21.2.0
+
+# Static files management
+whitenoise==6.5.0  # For serving static files in production
+
+# Environment variable management
+python-decouple==3.8  # Recommended for environment variable handling
+
+# Utilities
+dj-database-url==1.3.0  # To parse database URLs
+asgiref==3.7.2  # ASGI reference implementation (required by Channels)
+
+# Add any other specific libraries used in your project (e.g., for authentication, APIs)
+# dj-database-url==1.3.0
