@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import index, logout, authenticate
 from .forms import SignUpForm, LoginForm
 from chat.models import CustomUser, Message
 from django.contrib.auth.decorators import login_required
@@ -12,7 +12,7 @@ def signup_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            index(request, user)
             return redirect('chat')
     else:
         form = SignUpForm()
@@ -26,17 +26,17 @@ def login_view(request):
             password = form.cleaned_data.get('password')
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                login(request, user)
+                index(request, user)
                 return redirect('chat')
             else:
-                return render(request, 'chat/login.html', {'form': form, 'error': 'Invalid credentials'})
+                return render(request, 'chat/index.html', {'form': form, 'error': 'Invalid credentials'})
     else:
         form = LoginForm()
-    return render(request, 'chat/login.html', context={'form': form})
+    return render(request, 'chat/index.html', context={'form': form})
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('index')
 
 @login_required
 def chat_view(request, user_id=None):
