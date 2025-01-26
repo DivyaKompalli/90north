@@ -18,7 +18,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 # DEBUG = False
 
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = ['https://nine0north-0yi7.onrender.com']
 
 
 
