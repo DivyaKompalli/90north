@@ -14,7 +14,7 @@ SECRET_KEY = 'your-secret-key'
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['your-vercel-domain.vercel.app']
+ALLOWED_HOSTS = ['https://90northassignment.vercel.app']
 
 
 # Application definition
