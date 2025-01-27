@@ -4,7 +4,7 @@ from django.core.asgi import get_asgi_application
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('chat.urls')),  
+    path('chat/', include('chat.urls')),  
 ]
 
 from channels.routing import ProtocolTypeRouter, URLRouter
