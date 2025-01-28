@@ -42,9 +42,17 @@ def logout_view(request):
 def chat_view(request, user_id=None):
     users = CustomUser.objects.exclude(id=request.user.id)
     
+    if user_id is None and users.exists():
+        selected_user = users.first()
+        return HttpResponseRedirect(reverse('chat_with_user', args=[selected_user.id]))
+
     if user_id:
         selected_user = get_object_or_404(CustomUser, id=user_id)
-        
+    else:
+        selected_user = None
+
+    messages = []
+    if selected_user:
         if request.method == "POST":
             content = request.POST.get("message")
             if content:
@@ -53,16 +61,13 @@ def chat_view(request, user_id=None):
                     receiver=selected_user,
                     content=content
                 )
-                return HttpResponseRedirect(reverse('chat', args=[user_id]))
-        
+                return HttpResponseRedirect(reverse('chat_with_user', args=[selected_user.id]))
+
         messages = Message.objects.filter(
             (Q(sender=request.user) & Q(receiver=selected_user)) |
             (Q(sender=selected_user) & Q(receiver=request.user))
         ).order_by('timestamp')
-    else:
-        selected_user = None
-        messages = []
-    
+
     return render(request, 'chat/chat.html', {
         'users': users,
         'selected_user': selected_user,
